@@ -37,6 +37,7 @@ public class LoginRegister extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login_register);
+
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("session", Context.MODE_PRIVATE);
         Log.d("SESJA",prefs.getInt("usrid",-1)+"");
         if(prefs.getInt("usrid",-1)!=-1){

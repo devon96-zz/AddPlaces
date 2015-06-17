@@ -33,6 +33,10 @@ public class CallSoap extends Application {
 
     public final String DELETE = "deleteNote";
 
+    public final String DELETEALL = "deleteAllNote";
+
+    public final String DELETEACC = "deleteAccount";
+
     public final String UPDATE = "updateNote";
 
     public final String NAMESPACE = "http://tempuri.org/";
@@ -253,6 +257,63 @@ public class CallSoap extends Application {
 
         return true;
     }
+
+    public boolean deleteAll()
+    {
+        SoapObject request = new SoapObject(NAMESPACE,DELETEALL);
+        PropertyInfo pi1=new PropertyInfo();
+        pi1.setName("usrid");
+        pi1.setValue(uzytkowik.getId());
+        pi1.setType(Integer.class);
+        request.addProperty(pi1);
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = true;
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE httpTransport = new HttpTransportSE(SOAP_ADDRESS);
+        listaa.lista.clear();
+        try
+        {
+            httpTransport.call(NAMESPACE+DELETEALL,envelope);
+            Log.d("SOAP","SKASOWALEM");
+        }
+        catch(Exception e)
+        {
+            Log.e("SOAP",""+e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean deleteAccount()
+    {
+        SoapObject request = new SoapObject(NAMESPACE,DELETEACC);
+        PropertyInfo pi1=new PropertyInfo();
+        pi1.setName("usrid");
+        pi1.setValue(uzytkowik.getId());
+        pi1.setType(Integer.class);
+        request.addProperty(pi1);
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = true;
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE httpTransport = new HttpTransportSE(SOAP_ADDRESS);
+        listaa.lista.clear();
+        try
+        {
+            httpTransport.call(NAMESPACE+DELETEACC,envelope);
+            Log.d("SOAP","SKASOWALEM");
+        }
+        catch(Exception e)
+        {
+            Log.e("SOAP",""+e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
     public Object selectAll(){
 
         SoapObject request = new SoapObject(NAMESPACE,GIVEALL);

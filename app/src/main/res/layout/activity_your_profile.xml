@@ -46,4 +46,27 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/white" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE ALL NOTES"
+        android:id="@+id/delall"
+        android:onClick="delall"
+        style="@style/red_button"
+        android:layout_below="@+id/button4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        style="@style/red_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE ACCOUNT"
+        android:id="@+id/delacc"
+        android:onClick="delacc"
+        android:layout_below="@+id/delall"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
 </RelativeLayout>

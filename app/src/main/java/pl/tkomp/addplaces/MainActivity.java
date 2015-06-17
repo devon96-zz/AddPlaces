@@ -36,6 +36,7 @@ import android.view.View.OnKeyListener;
 public class MainActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
+    Boolean znacznik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,18 @@ public class MainActivity extends FragmentActivity {
         startActivity(intent);
     }
 
+    public void delall(View v){
+        OsobnyWatek_delall th = new OsobnyWatek_delall();
+        th.execute(null,null,null);
+    }
+
+    public void delacc(View v){
+        OsobnyWatek_delacc th = new OsobnyWatek_delacc();
+        th.execute(null,null,null);
+
+
+    }
+
     private View getTabIndicator(Context context, int title, int icon) {
         View view = LayoutInflater.from(context).inflate(R.layout.indicator_lay, null);
         ImageView iv = (ImageView) view.findViewById(R.id.imageView);
@@ -104,6 +117,63 @@ public class MainActivity extends FragmentActivity {
         tv.setText(title);
         return view;
     }
+
+    private class OsobnyWatek_delall extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            CallSoap cs;
+            cs=new CallSoap();
+            znacznik = cs.deleteAll();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result){
+            super.onPostExecute(result);
+            if(znacznik){
+                Toast.makeText(getApplicationContext(),"Kasowanie powiodło się",Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Kasowanie nie powiodło się",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class OsobnyWatek_delacc extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            CallSoap cs;
+            cs = new CallSoap();
+            znacznik = cs.deleteAccount();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if(znacznik){
+                SharedPreferences prefs = getApplicationContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+                prefs.edit().putInt("usrid",-1).apply();
+                Intent intent = new Intent(MainActivity.this,LoginRegister.class);
+                startActivity(intent);
+                finish();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Kasowanie nie powiodło się",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
