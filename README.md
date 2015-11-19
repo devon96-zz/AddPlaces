@@ -8,3 +8,4 @@ Functions include:
 
 # Screenshots
 
+![photo1](https://github.com/devon96/AddPlaces/blob/master/demo_photos/photo1.PNG "")
