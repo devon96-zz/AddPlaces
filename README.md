@@ -9,3 +9,5 @@ Functions include:
 # Screenshots
 
 ![photo1](https://github.com/devon96/AddPlaces/blob/master/demo_photos/photo1.PNG "")
+![photo2](https://github.com/devon96/AddPlaces/blob/master/demo_photos/photo2.PNG "")
+![photo3](https://github.com/devon96/AddPlaces/blob/master/demo_photos/photo3.PNG "")
